@@ -1,6 +1,6 @@
 {
   "name": "formula-editor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
