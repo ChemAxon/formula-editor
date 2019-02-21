@@ -1,6 +1,7 @@
 /node_modules
 /public
 /src
+/build
 README.md
 .gitignore
 .babelrc
