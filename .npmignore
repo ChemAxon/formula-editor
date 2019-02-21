@@ -1,0 +1,7 @@
+/node_modules
+/public
+/src
+README.md
+.gitignore
+.babelrc
+webpack.config.js

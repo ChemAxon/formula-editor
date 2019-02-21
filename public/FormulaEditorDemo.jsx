@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormulaEditor from './components/FormulaEditor';
+import FormulaEditor from '../src/components/FormulaEditor';
 
 class FormulaEditorDemo extends Component {
 
