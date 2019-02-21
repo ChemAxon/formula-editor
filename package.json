@@ -1,10 +1,12 @@
 {
   "name": "formula-editor",
+  "description": "Rich text editor for chemistry",
   "version": "0.2.4",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development",
+    "dev": "webpack-dev-server --mode development",
+    "start": "webpack --mode production",
     "transpile": "babel src -d dist && cp -r src/components/images dist/components",
     "prepublishOnly": "npm run transpile"
   },
