@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --mode development",
     "start": "webpack --mode production",
+    "heroku-postbuild": "npm install",
     "transpile": "babel src -d dist && cp -r src/components/images dist/components",
     "prepublishOnly": "npm run transpile"
   },
