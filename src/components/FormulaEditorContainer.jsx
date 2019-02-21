@@ -48,7 +48,7 @@ const FormulaEditor = ({editorValue, placeholder, focused, error, isItalic, isSu
                 onMouseUp = {getStyle}
                 onKeyUp = {getStyle}
             />
-            <Collapse in = {focused} >
+            <Collapse in = {true} >
                 <FormulaEditorButtonbar
                     changeButtonState = {changeButtonState}
                     isItalic = {isItalic}

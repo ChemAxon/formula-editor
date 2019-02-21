@@ -17,7 +17,6 @@ const styles = {
         padding: '9px 16px 9px 16px'
     },
     editor: {
-        minHeight: 48,
         lineHeight: '29px',
         verticalAlign: 'middle',
         display: 'inline-block',

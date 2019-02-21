@@ -18,6 +18,7 @@ const styles = {
     },
     notFocused: {
         opacity: 0.65,
+        border: '1px solid transparent',
         '&:hover': {
             backgroundColor: buttonHover,
             borderRadius: 3,
