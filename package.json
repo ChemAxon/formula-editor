@@ -1,7 +1,7 @@
 {
   "name": "formula-editor",
   "description": "Rich text editor for chemistry",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ChemAxon/formula-editor"
