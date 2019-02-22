@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/ChemAxon/formula-editor"    
   },
-  "license": "GNU-GPL3",
+  "license": "GNU-GPL3.0",
   "keywords": [
     "rich-text-editor",
     "chemical-formula",
