@@ -1,7 +1,7 @@
 {
   "name": "formula-editor",
   "description": "Rich text editor for chemistry",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
