@@ -218,9 +218,79 @@ const symbols = [
         title: 'Other symbols',
         characters: [
             {
+                name: 'leftwards arrow',
+                code: '&#8592;'
+            },
+            {
+                name: 'rightwards arrow',
+                code: '&#8594;'
+            },
+            {
+                name: 'upwards arrow',
+                code: '&#8593;'
+            },
+            {
+                name: 'downwards arrow',
+                code: '&#8595;'
+            },
+            {
+                name: 'left right arrow',
+                code: '&#8596;'
+            },
+            {
+                name: 'rightwards arrow with stroke',
+                code: '&#8603;'
+            },
+            {
                 name: 'equilibrium arrow',
                 code: '&#8652;'
-            }
+            },
+            {
+                name: 'equals',
+                code: '&#61;'
+            },
+            {
+                name: 'not equal to',
+                code: '&#8800;'
+            },
+            {
+                name: 'tilde',
+                code: '&#8764;'
+            },
+            {
+                name: 'approximately equals',
+                code: '&#8773;'
+            },
+            {
+                name: 'plus-minus',
+                code: '&#177;'
+            },
+            {
+                name: 'angstrom',
+                code: '&#8491;'
+            },
+            {
+                name: 'degree',
+                code: '&#176;'
+            },
+            {
+                name: 'bullet',
+                code: '&#8226;'
+            },
+            {
+                name: 'asterix',
+                code: '&#8727;'
+            },
+            {
+                name: 'infinity',
+                code: '&#8734;'
+            },
+            {
+                name: 'double dagger',
+                code: '&#8225;'
+            },
+
+
         ]
     }
 ];
