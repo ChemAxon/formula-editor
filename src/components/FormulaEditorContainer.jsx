@@ -1,4 +1,4 @@
- /* 
+/* 
     Formula-editor component to create scientific formulas.   
 
     Copyright (C) 2019  ChemAxon Kft.
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 import React from 'react';
-import { func, string, bool } from 'prop-types';
+import { func, string, bool,  } from 'prop-types';
 import {connect} from 'react-redux';
 import {identity} from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,9 +24,12 @@ import Collapse from '@material-ui/core/Collapse';
 import FormulaEditorButtonbar from './FormulaEditorButtonbar';
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
-import {changeFocusAction, getStyleAction, changeButtonStateAction } from '../duck/formulaEditorActionCreators';
+import {changeFocusAction, getStyleAction, changeButtonStateAction, changeSymbolPopoverStateAction } from '../duck/formulaEditorActionCreators';
 import FormulaEditorInput from './FormulaEditorInput';
 import { inactiveBorder, main, error } from './colors';
+import PopperWithArrow from './PopperWithArrow';
+import InsertContent from './InsertContent';
+import symbols from '../assets/symbols';
 
 const styles = {
     root: {
@@ -50,9 +53,15 @@ const styles = {
     }
 };
 
-const FormulaEditor = ({editorValue, placeholder, focused, error, isItalic, isSubscript, isSuperscript, onChange, onFocus = identity, onBlur = identity, changeFocus, getStyle, changeButtonState, classes}) => {
+const FormulaEditor = ({editorValue, placeholder, focused, error, isItalic, isSubscript, isSuperscript, isSymbol, onChange, onFocus = identity, onBlur = identity, changeFocus, getStyle, changeButtonState,
+    changeSymbolPopoverState, symbolPopoverAnchor, classes}) => {
     const onFocusWrapped = () => { changeFocus(true); onFocus(); }; 
     const onBlurWrapped = () => { changeFocus(false); onBlur(); };
+    const changeSymbolPopoverStateWrapper = (event, isClose) => { 
+        event.preventDefault(); 
+        changeSymbolPopoverState(isClose ? null : event.target); 
+        changeButtonState('symbol');
+    };
 
     return (
         <div onFocus = {onFocusWrapped } onBlur = {onBlurWrapped} className = {classNames(classes.root, error && focused ? classes.errorFocused : error ? classes.error : focused ? classes.focused : classes.inactive)}> 
@@ -71,6 +80,15 @@ const FormulaEditor = ({editorValue, placeholder, focused, error, isItalic, isSu
                     isItalic = {isItalic}
                     isSubscript = {isSubscript}
                     isSuperscript = {isSuperscript}
+                    isSymbol = {isSymbol}
+                    onSymbolClick = {changeSymbolPopoverStateWrapper}
+                    symbolPopover = {
+                        <PopperWithArrow
+                            anchorEl = {symbolPopoverAnchor} 
+                            onClose = {event => changeSymbolPopoverStateWrapper(event, true)}
+                            content = {<InsertContent characterList = {symbols}/>}
+                        />
+                    }
                 />
             </Collapse>
         </div>
@@ -85,7 +103,6 @@ FormulaEditor.propTypes = {
     isItalic: bool,
     isSubscript: bool,
     isSuperscript: bool,
-    isFormula: bool,
     changeFocus: func.isRequired,
     changeButtonState: func.isRequired,
     onChange: func.isRequired,
@@ -97,13 +114,16 @@ const mapStateToProps = state => ({
     focused: state.formulaEditor.focused,
     isItalic: state.formulaEditor.isItalic,
     isSubscript: state.formulaEditor.isSubscript,
-    isSuperscript: state.formulaEditor.isSuperscript
+    isSuperscript: state.formulaEditor.isSuperscript,
+    isSymbol: state.formulaEditor.isSymbol,
+    symbolPopoverAnchor: state.formulaEditor.symbolPopoverAnchor
 });
 
 const mapDispatchToProps = dispatch => ({
     changeFocus: bindActionCreators(changeFocusAction, dispatch),
     getStyle: bindActionCreators(getStyleAction, dispatch),
-    changeButtonState: bindActionCreators(changeButtonStateAction, dispatch)
+    changeButtonState: bindActionCreators(changeButtonStateAction, dispatch),
+    changeSymbolPopoverState: bindActionCreators(changeSymbolPopoverStateAction, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(FormulaEditor));

@@ -1,5 +1,5 @@
 
- /* 
+/* 
     Formula-editor component to create scientific formulas.   
 
     Copyright (C) 2019  ChemAxon Kft.

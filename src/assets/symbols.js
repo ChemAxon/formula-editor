@@ -15,12 +15,26 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
-import {CHANGE_FORMULA_EDITOR_FOCUS, GET_FORMULA_EDITOR_STYLE, CHANGE_FORMULA_EDITOR_BUTTON_STATE, CHANGE_SYMBOL_POPOVER_STATE} from './formulaEditorActionTypes';
-import findStyle from './formulaEditorStyleUtil';
 
-const changeFocusAction = focused => ({type: CHANGE_FORMULA_EDITOR_FOCUS, focused});
-const getStyleAction = () =>({type: GET_FORMULA_EDITOR_STYLE, styles: findStyle()});
-const changeButtonStateAction = format => ({type: CHANGE_FORMULA_EDITOR_BUTTON_STATE, format});
-const changeSymbolPopoverStateAction = eventTarget => ({type: CHANGE_SYMBOL_POPOVER_STATE, symbolPopoverAnchor: eventTarget});
+const symbols = [
+    {
+        title: 'Greek letters',
+        characters: [
+            {
+                name: 'alpha',
+                code: '&#120514;'
+            }
+        ]
+    },
+    {
+        title: 'Other symbols',
+        characters: [
+            {
+                name: 'equilibrium arrow',
+                code: '&#8652;'
+            }
+        ]
+    }
+];
 
-export {changeFocusAction, getStyleAction, changeButtonStateAction, changeSymbolPopoverStateAction};
+export default symbols;

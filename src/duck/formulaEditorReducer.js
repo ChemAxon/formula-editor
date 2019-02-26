@@ -1,4 +1,4 @@
- /* 
+/* 
     Formula-editor component to create scientific formulas.   
 
     Copyright (C) 2019  ChemAxon Kft.
@@ -17,14 +17,15 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 import createReducer from './createReducer';
 import { evolve, includes, equals, not } from 'ramda';
-import { CHANGE_FORMULA_EDITOR_FOCUS, GET_FORMULA_EDITOR_STYLE, CHANGE_FORMULA_EDITOR_BUTTON_STATE } from './formulaEditorActionTypes';
+import { CHANGE_FORMULA_EDITOR_FOCUS, GET_FORMULA_EDITOR_STYLE, CHANGE_FORMULA_EDITOR_BUTTON_STATE, CHANGE_SYMBOL_POPOVER_STATE } from './formulaEditorActionTypes';
 
 const initialState = {
     focused: false,
     isItalic: false,
     isSubscript: false,
     isSuperscript: false,
-    isFormula: false
+    isSymbol: false,
+    symbolPopoverAnchor: null
 };
 
 const changeFocus = (state, action) => 
@@ -44,12 +45,19 @@ const changeButtonState = (state, action) =>
         isItalic: () => equals(action.format, 'italic') ? not(state.isItalic) : state.isItalic,
         isSubscript: () => equals(action.format, 'subscript') ? not(state.isSubscript) : state.isSubscript,
         isSuperscript: () => equals(action.format, 'superscript') ? not(state.isSuperscript) : state.isSuperscript,
+        isSymbol: () => equals(action.format, 'symbol') ? not(state.isSymbol) : state.isSymbol,
+    }, state);
+
+const changeSymbolPopoverState = (state, action) => 
+    evolve({
+        symbolPopoverAnchor: () => action.symbolPopoverAnchor
     }, state);
 
 const actionHandlers = {
     [CHANGE_FORMULA_EDITOR_FOCUS]: changeFocus,
     [GET_FORMULA_EDITOR_STYLE]: getStyle,
-    [CHANGE_FORMULA_EDITOR_BUTTON_STATE]: changeButtonState
+    [CHANGE_FORMULA_EDITOR_BUTTON_STATE]: changeButtonState,
+    [CHANGE_SYMBOL_POPOVER_STATE]: changeSymbolPopoverState
 };
 
 const formulaEditor = createReducer(initialState, actionHandlers);

@@ -1,4 +1,4 @@
- /* 
+/* 
     Formula-editor component to create scientific formulas.   
 
     Copyright (C) 2019  ChemAxon Kft.
@@ -51,7 +51,7 @@ const styles = {
 };
 
 const SquareButton = ({icon, onMouseDown, focused, classes}) => (
-    <div className = {classNames(classes.root, focused ? classes.focused : classes.notFocused)} onMouseDown = {onMouseDown}>
+    <div className = {classNames(classes.root, focused ? classes.focused : classes.notFocused)} onMouseDown = {onMouseDown} >
         {icon}
     </div>
 );

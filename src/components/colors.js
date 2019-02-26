@@ -1,4 +1,4 @@
- /* 
+/* 
     Formula-editor component to create scientific formulas.   
 
     Copyright (C) 2019  ChemAxon Kft.
@@ -22,5 +22,6 @@ const error = '#EC3333';
 const buttonHover = '#F6F7F9';
 const buttonBorder = '#E8E8E8';
 const buttonFocus = '#EDEFF2';
+const popperBorderColor = '#E6E6E6';
 
-export {main, inactiveBorder, font, error, buttonHover, buttonBorder, buttonFocus};
+export {main, inactiveBorder, font, error, buttonHover, buttonBorder, buttonFocus, popperBorderColor};

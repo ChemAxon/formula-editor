@@ -1,4 +1,4 @@
- /* 
+/* 
     Formula-editor component to create scientific formulas.   
 
     Copyright (C) 2019  ChemAxon Kft.
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 import React from 'react';
-import { bool, func } from 'prop-types';
+import { bool, func, element } from 'prop-types';
 import FormatItalicIcon from '@material-ui/icons/FormatItalic';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { withStyles } from '@material-ui/core/styles';
@@ -54,7 +54,7 @@ const styles = {
     }
 };
 
-const FormulaEditorButtonbar = ({isItalic, isSubscript, isSuperscript, changeButtonState, classes}) => {
+const FormulaEditorButtonbar = ({isItalic, isSubscript, isSuperscript, isSymbol, changeButtonState, onSymbolClick, symbolPopover, classes}) => {
 
     const onItalicClick = event => {addSimpleStyle(event, 'italic'); changeButtonState('italic'); };
     const onSubscriptClick = event => {addSimpleStyle(event, 'subscript'); changeButtonState('subscript'); };
@@ -67,7 +67,8 @@ const FormulaEditorButtonbar = ({isItalic, isSubscript, isSuperscript, changeBut
             <SquareButton onMouseDown = { onSuperscriptClick } focused = {isSuperscript} icon = {<img src = {superscripticon} className = {classes.iconRoot} alt = '' />} classes = {{root: classes.squareButtonRoot}}/>
             <VerticalDivider classes = {{root: classes.divider}}/>
             <SquareButton onMouseDown = { changeToFormula }  icon = {<img src = {supersubscripticon} className = {classes.iconRoot} alt = ''/>} classes = {{root: classes.squareButtonRoot}}/>
-            <SquareButton onMouseDown = { addArrow }  icon = {<ArrowForwardIcon classes = {{root: classes.iconRoot}}/>} classes = {{root: classes.squareButtonRoot}}/>
+            <SquareButton onMouseDown = { onSymbolClick }  focused = {isSymbol} icon = {<ArrowForwardIcon classes = {{root: classes.iconRoot}}/>} classes = {{root: classes.squareButtonRoot}}/>
+            {symbolPopover}
         </div>
     );
 };
@@ -76,8 +77,10 @@ FormulaEditorButtonbar.propTypes = {
     isItalic: bool,
     isSubscript: bool,
     isSuperscript: bool,
-    isFormula: bool,
-    changeButtonState: func.isRequired
+    isSymbol: bool,
+    changeButtonState: func.isRequired,
+    onSymbolClick: func.isRequired,
+    symbolPopover: element.isRequired
 };
 
 export default withStyles(styles)(FormulaEditorButtonbar);
