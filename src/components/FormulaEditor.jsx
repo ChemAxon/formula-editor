@@ -17,7 +17,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 import React, {useReducer} from 'react';
 import { func, string, bool,  } from 'prop-types';
-import {identity} from 'ramda';
+import {identity, or} from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import FormulaEditorButtonbar from './FormulaEditorButtonbar';
@@ -64,8 +64,7 @@ const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = ide
     const onBlurWrapped = () => { changeFocus(false); onBlur(); };
     const changeSymbolPopoverStateWrapper = (event, isClose) => { 
         event.preventDefault(); 
-        // changeSymbolPopoverState(isClose ? null : event.target); 
-        changeButtonState('symbol');
+        changeSymbolPopoverState(or(isClose, symbolPopoverAnchor) ? null : event.target); 
     };
 
     return (

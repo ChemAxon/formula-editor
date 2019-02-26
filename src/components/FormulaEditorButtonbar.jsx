@@ -20,7 +20,7 @@ import { bool, func, element } from 'prop-types';
 import FormatItalicIcon from '@material-ui/icons/FormatItalic';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { withStyles } from '@material-ui/core/styles';
-import {addSimpleStyle, changeToFormula, addArrow} from '../duck/formulaEditorCommands';
+import { addSimpleStyle, changeToFormula } from '../duck/formulaEditorCommands';
 import SquareButton from './SquareButton';
 import VerticalDivider from './VerticalDivider';
 import subscripticon from './images/subscript.svg';
@@ -67,7 +67,7 @@ const FormulaEditorButtonbar = ({isItalic, isSubscript, isSuperscript, isSymbol,
             <SquareButton onMouseDown = { onSuperscriptClick } focused = {isSuperscript} icon = {<img src = {superscripticon} className = {classes.iconRoot} alt = '' />} classes = {{root: classes.squareButtonRoot}}/>
             <VerticalDivider classes = {{root: classes.divider}}/>
             <SquareButton onMouseDown = { changeToFormula }  icon = {<img src = {supersubscripticon} className = {classes.iconRoot} alt = ''/>} classes = {{root: classes.squareButtonRoot}}/>
-            <SquareButton onMouseDown = { onSymbolClick }  focused = {isSymbol} icon = {<ArrowForwardIcon classes = {{root: classes.iconRoot}}/>} classes = {{root: classes.squareButtonRoot}}/>
+            <SquareButton onMouseDown = { onSymbolClick }  focused = {isSymbol} icon = {<div dangerouslySetInnerHTML = {{__html: '&#120512;'}}/>} classes = {{root: classes.squareButtonRoot}}/>
             {symbolPopover}
         </div>
     );

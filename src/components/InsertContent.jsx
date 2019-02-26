@@ -19,6 +19,7 @@ import React, { Fragment } from 'react';
 import { shape, arrayOf, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import GridList from '@material-ui/core/GridList';
 import {popperBorderColor} from './colors';
 import Paper from '@material-ui/core/Paper';
 import SquareButton from './SquareButton';
@@ -26,6 +27,8 @@ import SquareButton from './SquareButton';
 const styles = {
     root: {
         width: 295,
+        height: 246,
+        overflow: 'auto',
         border: `1px solid ${popperBorderColor}`,
         padding: 24
     }
@@ -37,12 +40,27 @@ const InsertContent = ({characterList, classes}) => (
     </Paper>
 );
 
-const ContentBlock = ({block}) => (
+const contentBlockStyle = {
+    title: {
+        fontSize: '0.875rem',
+        marginBottom: 8
+    }, 
+    button: {
+        opacity: 1
+    },
+    gridlist: {
+        marginBottom: 20
+    }
+}
+
+const ContentBlock = withStyles(contentBlockStyle)(({block, classes}) => (
     <Fragment>
-        <Typography>{block.title}</Typography>
-        {block.characters.map(character => <SquareButton onMouseDown = {() => console.log(character.code)} icon = {<div dangerouslySetInnerHTML = {{__html: character.code}}/>}/>)}
+        <Typography variant = 'h6' classes = {{root: classes.title}}>{block.title}</Typography>
+        <GridList classes = {{root: classes.gridlist}}>
+            {block.characters.map(character => <SquareButton key = {character.code} onMouseDown = {() => console.log(character.code)} icon = {<div dangerouslySetInnerHTML = {{__html: character.code}}/>} classes = {{root: classes.button}}/>)}
+        </GridList>
     </Fragment>
-);
+));
 
 InsertContent.propTypes = {
     characterList: arrayOf(

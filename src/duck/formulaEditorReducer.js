@@ -45,12 +45,12 @@ const changeButtonState = (state, action) =>
         isItalic: () => equals(action.format, 'italic') ? not(state.isItalic) : state.isItalic,
         isSubscript: () => equals(action.format, 'subscript') ? not(state.isSubscript) : state.isSubscript,
         isSuperscript: () => equals(action.format, 'superscript') ? not(state.isSuperscript) : state.isSuperscript,
-        isSymbol: () => equals(action.format, 'symbol') ? not(state.isSymbol) : state.isSymbol,
     }, state);
 
 const changeSymbolPopoverState = (state, action) => 
     evolve({
-        symbolPopoverAnchor: () => action.symbolPopoverAnchor
+        symbolPopoverAnchor: () => action.symbolPopoverAnchor,
+        isSymbol: () => !!action.symbolPopoverAnchor
     }, state);
 
 const actionHandlers = {
