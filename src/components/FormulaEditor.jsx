@@ -64,7 +64,7 @@ const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = ide
     const onBlurWrapped = () => { changeFocus(false); onBlur(); };
     const changeSymbolPopoverStateWrapper = (event, isClose) => { 
         event.preventDefault(); 
-        changeSymbolPopoverState(isClose ? null : event.target); 
+        // changeSymbolPopoverState(isClose ? null : event.target); 
         changeButtonState('symbol');
     };
 
