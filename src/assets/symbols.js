@@ -383,13 +383,13 @@ const symbols = [
                 code: '&#128105;'
             },  
             {
-                name: 'genie man',
-                code: '&#129502;'
-            },
-            {
                 name: 'scientist man',
                 code: '&#128104;'
             },  
+            {
+                name: 'genie man',
+                code: '&#129502;'
+            },
             {
                 name: 'smiling face',
                 code: '&#128578;'
@@ -414,14 +414,6 @@ const symbols = [
                 name: 'thumbs up',
                 code: '&#128077;'
             },  
-            {
-                name: 'thumbs down',
-                code: '&#128078;'
-            },
-            {
-                name: 'thumbs down',
-                code: '&#128078;'
-            },
             {
                 name: 'thumbs down',
                 code: '&#128078;'
