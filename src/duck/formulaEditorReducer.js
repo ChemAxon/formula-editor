@@ -63,3 +63,4 @@ const actionHandlers = {
 const formulaEditor = createReducer(initialState, actionHandlers);
 
 export default formulaEditor;
+export {initialState};
