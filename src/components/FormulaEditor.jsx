@@ -17,7 +17,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 import React, {useReducer} from 'react';
 import { func, string, bool,  } from 'prop-types';
-import {identity, or} from 'ramda';
+import {identity, or, curry} from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import FormulaEditorButtonbar from './FormulaEditorButtonbar';
@@ -30,7 +30,7 @@ import symbols from '../assets/symbols';
 import emojis from '../assets/emojis';
 import reducer, {initialState} from '../duck/formulaEditorReducer';
 import {changeFocusAction, getStyleAction, changeButtonStateAction, changeSymbolPopoverStateAction, changeEmojiPopoverStateAction } from '../duck/formulaEditorActionCreators';
-import { addCharacter } from '../duck/formulaEditorCommands';
+import { addCharacter, addSimpleStyle, changeToFormula } from '../duck/formulaEditorCommands';
 
 const styles = {
     root: {
@@ -65,6 +65,7 @@ const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = ide
 
     const onFocusWrapped = () => { changeFocus(true); onFocus(); }; 
     const onBlurWrapped = () => { changeFocus(false); onBlur(); };
+    const addSimpleFormat = curry((format, event) => {addSimpleStyle(event, format); changeButtonState(format); });
     const changeSymbolPopoverStateWrapper = (event, isClose) => { 
         event.preventDefault(); 
         changeSymbolPopoverState(or(isClose, symbolPopoverAnchor) ? null : event.target); 
@@ -87,7 +88,8 @@ const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = ide
             />
             <Collapse in = {focused} >
                 <FormulaEditorButtonbar
-                    changeButtonState = {changeButtonState}
+                    addSimpleFormat = {addSimpleFormat}
+                    addFormula = {changeToFormula}
                     isItalic = {isItalic}
                     isSubscript = {isSubscript}
                     isSuperscript = {isSuperscript}

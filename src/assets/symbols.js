@@ -246,8 +246,16 @@ const symbols = [
                 code: '&#8652;'
             },
             {
+                name: 'double dagger',
+                code: '&#8225;'
+            },
+            {
                 name: 'equals',
                 code: '&#61;'
+            },
+            {
+                name: 'identical to',
+                code: '&#8801;'
             },
             {
                 name: 'not equal to',
@@ -258,6 +266,10 @@ const symbols = [
                 code: '&#8764;'
             },
             {
+                name: 'similar to or asymptotic to',
+                code: '&#8776;'
+            },
+            {
                 name: 'approximately equals',
                 code: '&#8773;'
             },
@@ -266,16 +278,40 @@ const symbols = [
                 code: '&#177;'
             },
             {
-                name: 'angstrom',
-                code: '&#8491;'
+                name: 'less than or equal to',
+                code: '&#8804;' 
             },
             {
-                name: 'degree',
-                code: '&#176;'
+                name: 'greater than or equal to',
+                code: '&#8805;'
             },
             {
                 name: 'bullet',
                 code: '&#8226;'
+            },
+            {
+                name: 'dot product (center dot)',
+                code: '&#183;'
+            },
+            {
+                name: 'square root',
+                code: '&#8730;'
+            },
+            {
+                name: 'partial differential',
+                code: '&#8706;'
+            },
+            {
+                name: 'nabla',
+                code: '&#8711;'
+            },
+            {
+                name: 'integral',
+                code: '&#8747;'
+            },
+            {
+                name: 'contour integral',
+                code: '&#8750'
             },
             {
                 name: 'asterix',
@@ -286,8 +322,20 @@ const symbols = [
                 code: '&#8734;'
             },
             {
-                name: 'double dagger',
-                code: '&#8225;'
+                name: 'per mille sign',
+                code: '&#8240;'
+            },
+            {
+                name: 'angstrom',
+                code: '&#8491;'
+            },
+            {
+                name: 'degree',
+                code: '&#176;'
+            },
+            {
+                name: 'plank constant over two pi',
+                code: '&#8463;'
             }
         ]
     }

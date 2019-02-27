@@ -10,32 +10,28 @@ npm install formula-editor
 
 ## Usage
 ```javascript
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import FormulaEditor from 'formula-editor';
 
-class FormulaEditorDemo extends Component {
+const FormulaEditorDemo = () => {
 
-    state = {
-        editorValue: ''
-    };
+    const [editorValue, changeEditorValue] = useState('');
 
-    handleChange = event => this.setState({editorValue: event.target.value});
-
-    render() {
-        return (
-            <FormulaEditor 
-                editorValue = {this.state.editorValue}
-                onChange = {this.handleChange}
-                placeholder = {'Start typing...'}
-            />
-        );
-    }
-}
+    return (
+        <FormulaEditor 
+            editorValue = {editorValue}
+            onChange = {event => changeEditorValue(event.target.value)}
+            placeholder = {'Start typing...'}
+        />
+    );
+};
 ```
 
 ## Available props
-| prop        | type   | description                       |
-|-------------|--------|-----------------------------------|
-| editorValue | string | Content of the editor             |
-| onChange    | func   | called whenever innerHTML changes |
-| placeholder | string | placeholder                       |
+| prop        | type   | description                               |
+|-------------|--------|-------------------------------------------|
+| editorValue | string | Content of the editor                     |  
+| placeholder | string | placeholder                               |
+| onChange    | func   | called whenever innerHTML changes         |
+| onFocus     | func   | called whenever editor input gets focus   |
+| onBlur      | func   | called whenever editor input looses focus |

@@ -25,17 +25,22 @@ import Paper from '@material-ui/core/Paper';
 import SquareButton from './SquareButton';
 
 const styles = {
-    root: {
+    paper: {
         width: 295,
         height: 246,
         overflow: 'auto',
         border: `1px solid ${popperBorderColor}`,
         padding: 24
+    },
+    top: {
+        width: '100%',
+        height: 10
     }
 };
 
 const InsertContent = ({characterList, onCharacterSelect, classes}) => (
-    <Paper className = {classes.root}>
+    <Paper className = {classes.paper}>
+        <div className = {classes.top}/>
         {characterList.map(block => <ContentBlock key = {block.title} block = {block} onCharacterSelect = {onCharacterSelect}/>)}
     </Paper>
 );
