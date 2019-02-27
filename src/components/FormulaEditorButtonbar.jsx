@@ -18,6 +18,7 @@
 import React from 'react';
 import { bool, func, element } from 'prop-types';
 import FormatItalicIcon from '@material-ui/icons/FormatItalic';
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { withStyles } from '@material-ui/core/styles';
 import { addSimpleStyle, changeToFormula } from '../duck/formulaEditorCommands';
 import SquareButton from './SquareButton';
@@ -53,7 +54,7 @@ const styles = {
     }
 };
 
-const FormulaEditorButtonbar = ({isItalic, isSubscript, isSuperscript, isSymbol, changeButtonState, onSymbolClick, symbolPopover, classes}) => {
+const FormulaEditorButtonbar = ({isItalic, isSubscript, isSuperscript, isSymbol, isEmoji, changeButtonState, onSymbolClick, symbolPopover, onEmojiClick, emojiPopover, classes}) => {
 
     const onItalicClick = event => {addSimpleStyle(event, 'italic'); changeButtonState('italic'); };
     const onSubscriptClick = event => {addSimpleStyle(event, 'subscript'); changeButtonState('subscript'); };
@@ -67,7 +68,9 @@ const FormulaEditorButtonbar = ({isItalic, isSubscript, isSuperscript, isSymbol,
             <VerticalDivider classes = {{root: classes.divider}}/>
             <SquareButton onMouseDown = { changeToFormula }  icon = {<img src = {supersubscripticon} className = {classes.iconRoot} alt = ''/>} classes = {{root: classes.squareButtonRoot}}/>
             <SquareButton onMouseDown = { onSymbolClick }  focused = {isSymbol} icon = {<div dangerouslySetInnerHTML = {{__html: '&#120512;'}}/>} classes = {{root: classes.squareButtonRoot}}/>
+            <SquareButton onMouseDown = { onEmojiClick } focused = {isEmoji} icon = {<InsertEmoticonIcon classes = {{root: classes.iconRoot}}/>} classes = {{root: classes.squareButtonRoot}}/>
             {symbolPopover}
+            {emojiPopover}
         </div>
     );
 };

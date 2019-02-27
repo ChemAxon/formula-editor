@@ -27,8 +27,9 @@ import { inactiveBorder, main, error } from './colors';
 import PopperWithArrow from './PopperWithArrow';
 import InsertContent from './InsertContent';
 import symbols from '../assets/symbols';
+import emojis from '../assets/emojis';
 import reducer, {initialState} from '../duck/formulaEditorReducer';
-import {changeFocusAction, getStyleAction, changeButtonStateAction, changeSymbolPopoverStateAction } from '../duck/formulaEditorActionCreators';
+import {changeFocusAction, getStyleAction, changeButtonStateAction, changeSymbolPopoverStateAction, changeEmojiPopoverStateAction } from '../duck/formulaEditorActionCreators';
 import { addCharacter } from '../duck/formulaEditorCommands';
 
 const styles = {
@@ -55,11 +56,12 @@ const styles = {
 
 const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = identity, onBlur = identity, classes}) => {
 
-    const [{focused, isItalic, isSubscript, isSuperscript, isSymbol, symbolPopoverAnchor}, dispatch] = useReducer(reducer, initialState);
+    const [{focused, isItalic, isSubscript, isSuperscript, isSymbol, isEmoji, symbolPopoverAnchor, emojiPopoverAnchor}, dispatch] = useReducer(reducer, initialState);
     const changeFocus = isFocused => dispatch(changeFocusAction(isFocused));
     const getStyle = () => dispatch(getStyleAction());
     const changeButtonState = format => dispatch(changeButtonStateAction(format));
     const changeSymbolPopoverState = eventTarget => dispatch(changeSymbolPopoverStateAction(eventTarget));
+    const changeEmojiPopoverState = eventTarget => dispatch(changeEmojiPopoverStateAction(eventTarget));
 
     const onFocusWrapped = () => { changeFocus(true); onFocus(); }; 
     const onBlurWrapped = () => { changeFocus(false); onBlur(); };
@@ -67,6 +69,10 @@ const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = ide
         event.preventDefault(); 
         changeSymbolPopoverState(or(isClose, symbolPopoverAnchor) ? null : event.target); 
     };
+    const changeEmojiPopoverStateWrapper = (event, isClose) => {
+        event.preventDefault(); 
+        changeEmojiPopoverState(or(isClose, emojiPopoverAnchor) ? null : event.target); 
+    }
 
     return (
         <div onFocus = {onFocusWrapped } onBlur = {onBlurWrapped} className = {classNames(classes.root, error && focused ? classes.errorFocused : error ? classes.error : focused ? classes.focused : classes.inactive)}> 
@@ -87,11 +93,20 @@ const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = ide
                     isSuperscript = {isSuperscript}
                     isSymbol = {isSymbol}
                     onSymbolClick = {changeSymbolPopoverStateWrapper}
+                    isEmoji = {isEmoji}
+                    onEmojiClick = {changeEmojiPopoverStateWrapper}
                     symbolPopover = {
                         <PopperWithArrow
                             anchorEl = {symbolPopoverAnchor} 
                             onClose = {event => changeSymbolPopoverStateWrapper(event, true)}
                             content = {<InsertContent characterList = {symbols} onCharacterSelect = {addCharacter}/>}
+                        />
+                    }
+                    emojiPopover = {
+                        <PopperWithArrow
+                            anchorEl = {emojiPopoverAnchor}
+                            onClose = {event => changeEmojiPopoverStateWrapper(event, true)}
+                            content = {<InsertContent characterList = {emojis} onCharacterSelect = {addCharacter}/>}
                         />
                     }
                 />
