@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 import React, { Fragment } from 'react';
-import { shape, arrayOf, string } from 'prop-types';
+import { shape, arrayOf, string, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import GridList from '@material-ui/core/GridList';
@@ -34,9 +34,9 @@ const styles = {
     }
 };
 
-const InsertContent = ({characterList, classes}) => (
+const InsertContent = ({characterList, onCharacterSelect, classes}) => (
     <Paper className = {classes.root}>
-        {characterList.map(block => <ContentBlock block = {block} key = {block.title}/>)}
+        {characterList.map(block => <ContentBlock key = {block.title} block = {block} onCharacterSelect = {onCharacterSelect}/>)}
     </Paper>
 );
 
@@ -49,15 +49,15 @@ const contentBlockStyle = {
         opacity: 1
     },
     gridlist: {
-        marginBottom: 20
+        marginBottom: '20px !important'
     }
 }
 
-const ContentBlock = withStyles(contentBlockStyle)(({block, classes}) => (
+const ContentBlock = withStyles(contentBlockStyle)(({block, onCharacterSelect, classes}) => (
     <Fragment>
         <Typography variant = 'h6' classes = {{root: classes.title}}>{block.title}</Typography>
         <GridList classes = {{root: classes.gridlist}}>
-            {block.characters.map(character => <SquareButton key = {character.code} onMouseDown = {() => console.log(character.code)} icon = {<div dangerouslySetInnerHTML = {{__html: character.code}}/>} classes = {{root: classes.button}}/>)}
+            {block.characters.map(character => <SquareButton key = {character.code} onMouseDown = {onCharacterSelect(character.code)} icon = {<div dangerouslySetInnerHTML = {{__html: character.code}}/>} classes = {{root: classes.button}}/>)}
         </GridList>
     </Fragment>
 ));
@@ -73,7 +73,8 @@ InsertContent.propTypes = {
                 })
             )
         })
-    )
+    ),
+    onCharacterSelect: func.isRequired
 };
 
 export default withStyles(styles)(InsertContent);

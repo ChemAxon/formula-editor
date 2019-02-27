@@ -29,6 +29,7 @@ import InsertContent from './InsertContent';
 import symbols from '../assets/symbols';
 import reducer, {initialState} from '../duck/formulaEditorReducer';
 import {changeFocusAction, getStyleAction, changeButtonStateAction, changeSymbolPopoverStateAction } from '../duck/formulaEditorActionCreators';
+import { addCharacter } from '../duck/formulaEditorCommands';
 
 const styles = {
     root: {
@@ -90,7 +91,7 @@ const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = ide
                         <PopperWithArrow
                             anchorEl = {symbolPopoverAnchor} 
                             onClose = {event => changeSymbolPopoverStateWrapper(event, true)}
-                            content = {<InsertContent characterList = {symbols}/>}
+                            content = {<InsertContent characterList = {symbols} onCharacterSelect = {addCharacter}/>}
                         />
                     }
                 />

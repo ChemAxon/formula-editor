@@ -15,7 +15,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
-import {last} from 'ramda';
+import {last, curry} from 'ramda';
 import { isFirefox } from './formulaEditorBrowserUtils';
 
 const formulaHTMLForFirefox = 
@@ -65,9 +65,9 @@ const addSimpleStyle = (event, style) => {
     document.execCommand(style, false);
 };
 
-const addArrow = event => {
+const addCharacter = curry((character, event) => {
     event.preventDefault();
-    document.execCommand('insertHTML', false, '&#8652');
-};
+    document.execCommand('insertHTML', false, character);
+});
 
-export { changeToFormula, addArrow, addSimpleStyle };
+export { changeToFormula, addCharacter, addSimpleStyle };

@@ -18,7 +18,6 @@
 import React from 'react';
 import { bool, func, element } from 'prop-types';
 import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { withStyles } from '@material-ui/core/styles';
 import { addSimpleStyle, changeToFormula } from '../duck/formulaEditorCommands';
 import SquareButton from './SquareButton';
