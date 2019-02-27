@@ -15,7 +15,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { object, func, element } from 'prop-types';
 import Popper from '@material-ui/core/Popper';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,14 +25,6 @@ import {popperBorderColor} from './colors';
 const styles = theme => ({
     popper: {
         zIndex: 1,
-        '&[x-placement*="right"] $arrowContainer': {
-            left: 0,
-            transform: 'translateX(-15%) rotate(45deg)'
-        },
-        '&[x-placement*="left"] $arrowContainer': {
-            right: 0,
-            transform: 'translateX(15%) rotate(-135deg)' 
-        },
         '&[x-placement*="bottom"] $arrowContainer': {
             top: 0,
             transform: 'translateY(-15%) rotate(135deg)' 
@@ -65,53 +57,44 @@ const styles = theme => ({
     }
 });
 
-class PopperWithArrow extends Component {
-
-    state = {
-        arrowRef: null
-    }
-
-    handleArrowRef = node => this.setState({ arrowRef: node}); 
-
-    render() {
-        const {anchorEl, onClose, content, classes} = this.props;
-        return (
-            <Popper
-                open = {!!anchorEl} 
-                anchorEl = {anchorEl} 
-                onClose = {onClose}
-                placement = 'bottom'
-                disablePortal = {false}
-                modifiers = {{
-                    flip: {
-                        enabled: true,
-                    },
-                    preventOverflow: {
-                        enabled: true,
-                        boundariesElement: 'scrollParent',
-                    },
-                    arrow: {
-                        enabled: true,
-                        element: this.state.arrowRef
-                    },
-                    offset: {
-                        offset: '0, 9'
-                    }
-                }}
-                className = {classes.popper}
-            >
-                <ClickAwayListener onClickAway = {onClose} mouseEvent = 'onMouseDown'>
-                    <div>
-                        <span className={classes.arrowContainer} ref = {this.handleArrowRef}>
-                            <i className={classes.arrow} />
-                        </span>
-                        {content}
-                    </div>
-                </ClickAwayListener>
-            </Popper>
-        );
-    }
-}
+const PopperWithArrow = ({anchorEl, onClose, content, classes}) => {
+    const [arrowRef, handleArrowRef] = useState(null);
+    return (
+        <Popper
+            open = {!!anchorEl} 
+            anchorEl = {anchorEl} 
+            onClose = {onClose}
+            placement = 'bottom'
+            disablePortal = {false}
+            modifiers = {{
+                flip: {
+                    enabled: false,
+                },
+                preventOverflow: {
+                    enabled: true,
+                    boundariesElement: 'scrollParent',
+                },
+                arrow: {
+                    enabled: true,
+                    element: arrowRef
+                },
+                offset: {
+                    offset: '0, 9'
+                }
+            }}
+            className = {classes.popper}
+        >
+            <ClickAwayListener onClickAway = {onClose} mouseEvent = 'onMouseDown'>
+                <div>
+                    <span className={classes.arrowContainer} ref = {handleArrowRef}>
+                        <i className={classes.arrow} />
+                    </span>
+                    {content}
+                </div>
+            </ClickAwayListener>
+        </Popper>
+    );
+};
 
 PopperWithArrow.propTypes = {
     anchorEl: object,
