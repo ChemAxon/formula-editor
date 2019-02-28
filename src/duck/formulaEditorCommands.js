@@ -34,6 +34,7 @@ const changeToFormula = event => {
     event.preventDefault(); 
     insertFormula();
     setCursorPosition();
+    saveEditorValue();    
 };
 
 const insertFormula = () => {
@@ -45,7 +46,7 @@ const insertFormula = () => {
 };
 
 const createFormulaElement = () => {
-    const template = document.createElement('template');
+    const template = document.createElement('template'); 
     template.innerHTML = isFirefox() ? formulaHTMLForFirefox : formulaHTMLForOtherBrowsers;
     return template.content;
 };
@@ -59,6 +60,8 @@ const setCursorPosition = () => {
     selection.removeAllRanges();
     selection.addRange(range);
 };
+
+const saveEditorValue = () => document.execCommand('insertHTML', false, ''); // execCommand fires onChange while other html manipulation not. 
 
 const addSimpleStyle = (event, style) => {
     event.preventDefault(); 
