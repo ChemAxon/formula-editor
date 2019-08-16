@@ -21,7 +21,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import ContentEditable from 'react-contenteditable';
 import ErrorIcon from '@material-ui/icons/Error';
-import { font, main } from './colors';
+import { font, error } from './colors';
 
 const styles = {
     root: {
@@ -87,7 +87,7 @@ const styles = {
     },
     icon: {
         fontSize: 18,
-        color: main
+        color: error
     }
 };
 

@@ -15,13 +15,14 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
-const main = '#414D55';
-const inactiveBorder = '#D2D2D2';
+const main = '#5A6A72';           //GR8
+const inactiveBorder = '#C6CED2'; //GR4
+const active = '#147DB3'          //ActionDefault
 const font = '#000000';
-const error = '#EC3333';
-const buttonHover = '#F6F7F9';
-const buttonBorder = '#E8E8E8';
+const error = '#D90000';
+const buttonHover = '#F9FAFA';    //GR1
+const buttonBorder = '#C6CED2';
 const buttonFocus = '#EDEFF2';
-const popperBorderColor = '#E6E6E6';
+const popperBorderColor = '#C6CED2';
 
-export {main, inactiveBorder, font, error, buttonHover, buttonBorder, buttonFocus, popperBorderColor};
+export {main, inactiveBorder, active, font, error, buttonHover, buttonBorder, buttonFocus, popperBorderColor};

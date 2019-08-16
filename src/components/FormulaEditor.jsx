@@ -23,7 +23,7 @@ import Collapse from '@material-ui/core/Collapse';
 import FormulaEditorButtonbar from './FormulaEditorButtonbar';
 import classNames from 'classnames';
 import FormulaEditorInput from './FormulaEditorInput';
-import { inactiveBorder, main, error } from './colors';
+import { inactiveBorder, main, error, active } from './colors';
 import PopperWithArrow from './PopperWithArrow';
 import InsertContent from './InsertContent';
 import symbols from '../assets/symbols';
@@ -44,7 +44,7 @@ const styles = {
         }   
     },
     focused: {
-        border: `2px solid ${main}`
+        border: `2px solid ${active}`
     },
     error: {
         border: `1px solid ${error}`
