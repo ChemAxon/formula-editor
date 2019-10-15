@@ -40,6 +40,7 @@ const styles = {
         width: '100%',
         fontWeight: 500,
         fontSize: '1.125rem',
+        backgroundColor: 'white',
         '&:focus': {
             outline: '0px solid transparent !important'
         },

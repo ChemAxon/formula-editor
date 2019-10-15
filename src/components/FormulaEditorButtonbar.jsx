@@ -33,7 +33,8 @@ const styles = {
         height: 40,
         display: 'flex',
         alignItems: 'center',
-        paddingLeft: 8
+        paddingLeft: 8,
+        backgroundColor: 'white'
     },
     buttonSize: {
         height: 32,
