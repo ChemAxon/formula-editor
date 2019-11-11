@@ -1,8 +1,8 @@
- /* 
-    Formula-editor component to create scientific formulas.   
+ /*
+    Formula-editor component to create scientific formulas.
 
     Copyright (C) 2019  ChemAxon Kft.
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -25,7 +25,8 @@ import { font, error } from './colors';
 
 const styles = {
     root: {
-        display: 'flex'
+        display: 'flex',
+        fontSize: '1.125rem',
     },
     focusedPadding: {
         padding: '8px 15px 8px 15px'
@@ -39,7 +40,7 @@ const styles = {
         display: 'inline-block',
         width: '100%',
         fontWeight: 500,
-        fontSize: '1.125rem',
+        fontSize: 'inherit',
         backgroundColor: 'white',
         '&:focus': {
             outline: '0px solid transparent !important'
@@ -97,13 +98,13 @@ const FormulaEditorInput = ({editorValue, onChange, focused, placeholder = '', e
         <ContentEditable
             tagName = 'span'
             style = {{'--placeholder': `"${placeholder}"`}}
-            className = {classNames(classes.editor, focused ? classes.focusedPadding : classes.inactivePadding)} 
-            onChange = {onChange} 
+            className = {classNames(classes.editor, focused ? classes.focusedPadding : classes.inactivePadding)}
+            onChange = {onChange}
             html = {editorValue}
             onKeyUp = {onKeyUp}
             onMouseUp = {onMouseUp}
         />
-        { error && 
+        { error &&
             <div className = {classes.errorPlace}>
                 <ErrorIcon classes = {{root: classes.icon}}/>
             </div>
