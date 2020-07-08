@@ -2,6 +2,7 @@
 /public
 /src
 /build
+/.idea
 README.md
 .gitignore
 .babelrc
