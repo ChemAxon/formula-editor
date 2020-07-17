@@ -37,6 +37,7 @@ const styles = {
         borderRadius: 3,
         fontFamily: 'Roboto'
     },
+    input: {},
     inactive: {
         border: `1px solid ${inactiveBorder}`,
         '&:hover': {
