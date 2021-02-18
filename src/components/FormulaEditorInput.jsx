@@ -103,6 +103,7 @@ const FormulaEditorInput = ({editorValue, onChange, focused, placeholder = '', e
             html = {editorValue}
             onKeyUp = {onKeyUp}
             onMouseUp = {onMouseUp}
+            disabled={!onChange}
         />
         { error &&
             <div className = {classes.errorPlace}>
