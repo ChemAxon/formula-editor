@@ -128,7 +128,7 @@ FormulaEditor.propTypes = {
     placeholder: string,
     focused: bool,
     error: bool,
-    onChange: func.isRequired,
+    onChange: func,
     onFocus: func,
     onBlur: func
 };
