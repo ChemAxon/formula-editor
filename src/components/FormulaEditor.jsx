@@ -44,6 +44,11 @@ const styles = {
             border: `1px solid ${main}`
         }   
     },
+    disabled: {
+        '&:hover': {
+            border: `1px solid ${inactiveBorder}`,
+        }
+    },
     focused: {
         border: `2px solid ${active}`
     },
@@ -77,7 +82,7 @@ const FormulaEditor = ({editorValue, placeholder, error, onChange, onFocus = ide
     }
 
     return (
-        <div onFocus = {onFocusWrapped } onBlur = {onBlurWrapped} className = {classNames(classes.root, error && focused ? classes.errorFocused : error ? classes.error : focused ? classes.focused : classes.inactive)}> 
+        <div onFocus = {onChange ? onFocusWrapped : null } onBlur = {onBlurWrapped} className = {classNames(classes.root, error && focused ? classes.errorFocused : error ? classes.error : focused ? classes.focused : classes.inactive, onChange ? null : classes.disabled)}>
             <FormulaEditorInput
                 editorValue = {editorValue}
                 onChange = {onChange}
@@ -123,7 +128,7 @@ FormulaEditor.propTypes = {
     placeholder: string,
     focused: bool,
     error: bool,
-    onChange: func.isRequired,
+    onChange: func,
     onFocus: func,
     onBlur: func
 };
