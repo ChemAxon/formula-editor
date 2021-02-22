@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import FormulaEditor from '../src/components/FormulaEditor';
 
 class FormulaEditorDemo extends Component {
@@ -11,11 +11,17 @@ class FormulaEditorDemo extends Component {
 
     render() {
         return (
-            <FormulaEditor 
-                editorValue = {this.state.editorValue}
-                onChange = {this.handleChange}
-                placeholder = {'Start typing...'}
-            />
+            <Fragment>
+                <FormulaEditor
+                    editorValue = {this.state.editorValue}
+                    onChange = {this.handleChange}
+                    placeholder = {'Start typing...'}
+                />
+                <br/>
+                <FormulaEditor
+                    editorValue = 'This editor is disabled, because it did not receive onChange'
+                />
+            </Fragment>
         );
     }
 }
